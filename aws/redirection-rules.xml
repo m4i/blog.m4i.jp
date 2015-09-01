@@ -1,0 +1,19 @@
+<RoutingRules>
+  <RoutingRule>
+    <Condition>
+      <KeyPrefixEquals>rss</KeyPrefixEquals>
+    </Condition>
+    <Redirect>
+      <ReplaceKeyPrefixWith>feed</ReplaceKeyPrefixWith>
+    </Redirect>
+  </RoutingRule>
+  <RoutingRule><Condition><KeyPrefixEquals>entry/2013</KeyPrefixEquals></Condition><Redirect><HostName>m4i.hatenablog.com</HostName></Redirect></RoutingRule>
+  <RoutingRule><Condition><KeyPrefixEquals>entry/2012</KeyPrefixEquals></Condition><Redirect><HostName>m4i.hatenablog.com</HostName></Redirect></RoutingRule>
+  <RoutingRule><Condition><KeyPrefixEquals>entry/2011</KeyPrefixEquals></Condition><Redirect><HostName>m4i.hatenablog.com</HostName></Redirect></RoutingRule>
+  <RoutingRule><Condition><KeyPrefixEquals>entry/2010</KeyPrefixEquals></Condition><Redirect><HostName>m4i.hatenablog.com</HostName></Redirect></RoutingRule>
+  <RoutingRule><Condition><KeyPrefixEquals>entry/2009</KeyPrefixEquals></Condition><Redirect><HostName>m4i.hatenablog.com</HostName></Redirect></RoutingRule>
+  <RoutingRule><Condition><KeyPrefixEquals>entry/2008</KeyPrefixEquals></Condition><Redirect><HostName>m4i.hatenablog.com</HostName></Redirect></RoutingRule>
+  <RoutingRule><Condition><KeyPrefixEquals>entry/2007</KeyPrefixEquals></Condition><Redirect><HostName>m4i.hatenablog.com</HostName></Redirect></RoutingRule>
+  <RoutingRule><Condition><KeyPrefixEquals>entry/2006</KeyPrefixEquals></Condition><Redirect><HostName>m4i.hatenablog.com</HostName></Redirect></RoutingRule>
+  <RoutingRule><Condition><KeyPrefixEquals>entry/2005</KeyPrefixEquals></Condition><Redirect><HostName>m4i.hatenablog.com</HostName></Redirect></RoutingRule>
+</RoutingRules>

@@ -1,0 +1,32 @@
+permalink: /:year/:month/:day/:title
+source: source
+timezone: UTC
+kramdown:
+  input: GFM
+  hard_wrap: false
+defaults:
+  - scope:
+      type: drafts
+    values:
+      layout: post
+      og_type: article
+  - scope:
+      type: posts
+    values:
+      layout: post
+      og_type: article
+assets:
+  assets:
+    - "*.jpg"
+    - "*.png"
+    - main.css
+
+title: "@m4i's blog"
+author: m4i
+url: http://blog.m4i.jp
+twitter_username: m4i
+ga_tracking_id: UA-64574-6
+
+aws:
+  region: ap-northeast-1
+  bucket_name: blog.m4i.jp

@@ -1,0 +1,22 @@
+---
+layout: default
+---
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name">{{ page.title }}</h1>
+    <div class="post-meta">
+      {% if page.tags != empty %}
+        <ul class="tag-list">
+          {% for tag in page.tags %}
+            <li class="tag" itemprop="keywords">{{ tag }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+      <time class="published" datetime="{{ page.date | date_to_xmlschema }}" pubdate itemprop="datePublished">{{ page.date | date: '%F' }}</time>
+      {% if page.modified_at %}
+        <time class="modified" datetime="{{ page.modified_at | date_to_xmlschema }}" itemprop="dateModified">{{ page.modified_at | date: '%F' }}</time>
+      {% endif %}
+    </div>
+  </header>
+  <div class="post-content" itemprop="articleBody">{{ content }}</div>
+</article>

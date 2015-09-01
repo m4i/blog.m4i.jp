@@ -1,0 +1,5 @@
+.asset-cache/
+.jekyll-metadata
+/.bundle/
+/.sass-cache/
+/_site/

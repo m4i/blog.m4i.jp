@@ -1,0 +1,13 @@
+machine:
+  ruby:
+    version: 2.2.2
+test:
+  override:
+    - bundle exec jekyll build -V:
+        environment:
+          JEKYLL_ENV: production
+deployment:
+  production:
+    branch: master
+    commands:
+      - bin/deploy

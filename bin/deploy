@@ -1,0 +1,88 @@
+#!/usr/bin/env ruby
+
+CONFIG_FILE = '_config.yml'
+DESTINATION = '_site'
+DOC_EXTS    = %w(atom html)
+OBJECT_KEYS = {
+  'index.html' => '.index',
+  '404.html'   => '.404',
+}
+
+require 'digest'
+require 'pathname'
+require 'yaml'
+require 'bundler/setup'
+require 'aws-sdk'
+require 'rack'
+
+def get_object_key(path)
+  if (object_key = OBJECT_KEYS[path.to_s])
+    object_key
+  elsif DOC_EXTS.include?(path.extname[1..-1])
+    path = path.to_s
+    path[0, path.rindex('.')]
+  else
+    path.to_s
+  end
+end
+
+def get_content_type(path)
+  Rack::Mime.mime_type(path.extname)
+end
+
+def has_digest?(path)
+  /-[\da-f]{32,64}\./i =~ path.to_s
+end
+
+def deploy_s3(region:, bucket_name:)
+  Aws.config.update(region: region)
+  bucket = Aws::S3::Resource.new.bucket(bucket_name)
+
+  Dir.chdir(DESTINATION) do
+    paths_by_object_key = Pathname('.').find
+      .select(&:file?)
+      .map { |path| [get_object_key(path), path] }
+      .to_h
+
+    # delete objects
+    bucket.objects.each do |object|
+      next if paths_by_object_key.key?(object.key)
+      puts "DELETE #{object.key}"
+      object.delete
+    end
+
+    # upload files
+    paths_by_object_key.each do |object_key, path|
+      content = path.read(encoding: Encoding::BINARY)
+
+      object = bucket.object(object_key)
+      if object.exists? && (has_digest?(path) ||
+          object.etag == Digest::MD5.hexdigest(content).inspect)
+        puts "EXISTS #{object_key}"
+        next
+      end
+
+      content_type = get_content_type(path)
+      options = {
+        body:         content,
+        content_type: content_type,
+      }
+
+      if has_digest?(path)
+        options[:cache_control] = "public, max-age=#{365 * 24 * 60 * 60}"
+      end
+
+      puts "UPLOAD #{path} => #{object_key} (#{content_type})"
+      object.put(options)
+    end
+  end
+end
+
+
+Dir.chdir(__dir__ + '/..')
+
+config = YAML.load_file(CONFIG_FILE)
+deploy_s3(
+  region:      config['aws']['region'],
+  bucket_name: config['aws']['bucket_name'],
+)

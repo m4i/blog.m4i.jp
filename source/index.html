@@ -1,0 +1,15 @@
+---
+layout: default
+og_type: website
+index: true
+---
+<ul class="post-list">
+  {% for post in site.posts %}
+    <li>
+      <span class="post-meta">{{ post.date | date: '%F' }}</span>
+      <a href="{{ post.url }}">{{ post.title }}</a>
+    </li>
+  {% endfor %}
+</ul>
+
+<p><a href="http://m4i.hatenablog.com/archive">過去の記事</a></p>
