@@ -1,7 +1,7 @@
 ---
 title: はてなブログから Jekyll へ
 tags: Jekyll S3 GitHubPages CircleCI
-modified_at: 2015-09-02
+modified_at: 2015-09-09
 ---
 自分でのブログの運用に疲れ、重要なのは中身だと、
 はてなブログに移る人や Qiita をメインにしている人を最近多く見かけるが、
@@ -90,8 +90,8 @@ GitHub Pages に比べて劣る点は
 というところ。
 
 デプロイは CI に任せれば良いので CircleCI を使う。  
-[circle.yml](https://github.com/m4i/blog.m4i.jp/blob/ed97d2df4016509b7431277492e8fe7dee69c98b/circle.yml)
-[deploy script](https://github.com/m4i/blog.m4i.jp/blob/ed97d2df4016509b7431277492e8fe7dee69c98b/bin/deploy)  
+[circle.yml](https://github.com/m4i/blog.m4i.jp/blob/master/circle.yml)
+[deploy script](https://github.com/m4i/blog.m4i.jp/blob/master/bin/deploy)  
 数ある CI サービスの中から CircleCI を選んだのは、
 Travis CI は開始まで待たされるイメージがある（過去の話？）、
 CircleCI は使い慣れている、というだけ。

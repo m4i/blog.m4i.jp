@@ -26,7 +26,3 @@ author: m4i
 url: http://blog.m4i.jp
 twitter_username: m4i
 ga_tracking_id: UA-64574-7
-
-aws:
-  region: ap-northeast-1
-  bucket_name: blog.m4i.jp
