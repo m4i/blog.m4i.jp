@@ -3,16 +3,11 @@
   "Statement": [
     {
       "Effect": "Allow",
-      "Action": "s3:ListAllMyBuckets",
-      "Resource": "arn:aws:s3:::*"
-    },
-    {
-      "Effect": "Allow",
       "Action": [
         "s3:ListBucket",
         "s3:GetBucketLocation"
       ],
-      "Resource": "arn:aws:s3:::blog.m4i.jp"
+      "Resource": "arn:aws:s3:::${bucket_name}"
     },
     {
       "Effect": "Allow",
@@ -21,7 +16,7 @@
         "s3:GetObject",
         "s3:DeleteObject"
       ],
-      "Resource": "arn:aws:s3:::blog.m4i.jp/*"
+      "Resource": "arn:aws:s3:::${bucket_name}/*"
     }
   ]
 }
