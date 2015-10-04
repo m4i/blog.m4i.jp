@@ -1,6 +1,7 @@
 ---
 title: S3 で HTTPS をリダイレクトする
 tags: S3 CloudFront
+modified_at: 2015-10-05
 ---
 ドメインが変わった時など、古いURLから新しいURLに自動でリダイレクトしたい時がある。
 そのためにサーバを用意してもよいけど、ただリダイレクトするためにサーバを用意するのは大変だ。
@@ -16,10 +17,9 @@ S3 website endpoint は [HTTPS に対応していないからだ](http://docs.aw
 1. S3 で http のリダイレクトをしたい時と全く同じ設定をする
 2. SSL 証明書を IAM にアップロードする
 3. CloudFront で distribution を作成する
-    1. "Origin Domain Name" に、
-       選択肢としてでてくる S3 bucket `old.example.com` を指定せずに、
-       S3 website endpoint `old.example.com.s3-website-{region}.amazonaws.com` を指定する
-    2. "Origin Protocol Policy" に "HTTP Only" を指定する
-    3. "Alternate Domain Names (CNAMEs)" に `old.example.com` を指定する
-    4. "SSL Certificate" に IAM にアップロードした SSL 証明書を指定する
+    * Origin Domain Name: 選択肢としてでてくる S3 bucket `old.example.com` を指定せずに、
+      S3 website endpoint `old.example.com.s3-website-{region}.amazonaws.com` を指定
+    * Origin Protocol Policy: HTTP Only
+    * Alternate Domain Names (CNAMEs): `old.example.com`
+    * SSL Certificate: 2 でアップロードした SSL 証明書を選択
 4. DNS の設定で `old.example.com` の CNAME を、割り当てられた CloudFront のホストに設定する
