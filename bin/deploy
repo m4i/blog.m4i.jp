@@ -75,6 +75,20 @@ def deploy_to_s3(bucket_name)
   end
 end
 
+def invalidate(distribution_id)
+  Aws::CloudFront::Client.new.create_invalidation(
+    distribution_id: distribution_id,
+    invalidation_batch: {
+      paths: {
+        quantity: 1,
+        items: ['/*'],
+      },
+      caller_reference: (Time.now.to_f * 1000).to_i.to_s,
+    }
+  )
+end
+
 
 Dir.chdir(__dir__ + '/..')
 deploy_to_s3(ENV.fetch('S3_BUCKET_NAME'))
+invalidate(ENV.fetch('CLOUDFRONT_DISTRIBUTION_ID'))
