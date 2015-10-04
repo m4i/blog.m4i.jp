@@ -63,6 +63,27 @@ body {
     }
   }
 
+  .post-footer {
+    margin-top: 30px;
+
+    .tweet,
+    .hatena-bookmark {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      background-image: image-url("social-buttons.png");
+      background-size: cover;
+    }
+
+    .tweet {
+      background-position: left top;
+    }
+
+    .hatena-bookmark {
+      background-position: right top;
+    }
+  }
+
   .post-content {
     line-height: 1.8;
 

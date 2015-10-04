@@ -18,5 +18,14 @@ layout: default
       {% endif %}
     </div>
   </header>
+
   <div class="post-content" itemprop="articleBody">{{ content }}</div>
+
+  <footer class="post-footer">
+    {% capture html_title %}{{ page.title }} - {{ site.title }}{% endcapture %}
+    {% capture permalink %}{{ site.url }}{{ page.url }}{% endcapture %}
+    <a class="tweet" href="https://twitter.com/intent/tweet?text={{ html_title | uri_escape }}&url={{ permalink | cgi_escape }}" target="_blank"></a>
+    <a class="hatena-bookmark" href="http://b.hatena.ne.jp/entry/{{ permalink }}" target="_blank"></a>
+    <a href="http://b.hatena.ne.jp/entry/{{ permalink }}" target="_blank"><img src="//b.hatena.ne.jp/entry/image/{{ permalink }}" alt="はてなブックマーク"></a>
+  </footer>
 </article>
