@@ -1,6 +1,7 @@
 ---
 title: ブログを HTTPS 化した
 tags: CloudFront S3
+modified_at: 2015-10-06
 ---
 最近はブログも HTTPS が当たり前らしいのでこのブログも HTTPS 化することにした。
 このブログは S3 上にホストされているので CloudFront と組み合わせることによって実現している。
@@ -44,7 +45,7 @@ CloudFront から配信するファイルはデフォルトで24時間キャッ�
 2. デプロイ時にキャッシュを削除する
 
 Jekyll での個人ブログという性質上、コンテンツが変化するタイミングが少ないため 2 で行きたい。
-そして 2 で行くならば、むしろキャッシュ時間を1年に伸ばしても良いくらいだ。
+ついでに、どうせキャッシュは削除するのでキャッシュ時間を1年に伸ばしておく。
 
 次は、どうやってキャッシュを削除するか。
 
@@ -62,7 +63,7 @@ Jekyll での個人ブログという性質上、コンテンツが変化する�
 個別に削除リクエストするよりは圧倒的に安そうだ。
 
 単にワイルドカードで全ファイルを削除するならば 2 の方が手軽だと考え、
-[デプロイスクリプト](https://github.com/m4i/blog.m4i.jp/blob/master/bin/deploy)に以下のコードを追加した
+[デプロイスクリプト](https://github.com/m4i/blog.m4i.jp/blob/master/bin/deploy)に以下のコードを追加した。
 
 {% highlight ruby %}
 Aws::CloudFront::Client.new.create_invalidation(
