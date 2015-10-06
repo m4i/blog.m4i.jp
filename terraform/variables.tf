@@ -1,11 +1,6 @@
-variable "aws_region" {
-    default = "us-west-2"
-}
+variable "aws_region" {}
+variable "bucket_name" {}
 
 variable "user_name" {
     default = "blog"
-}
-
-variable "bucket_name" {
-    default = "blog.m4i.jp"
 }
