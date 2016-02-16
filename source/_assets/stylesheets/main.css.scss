@@ -3,6 +3,7 @@ body {
   margin-left: auto;
   padding: 0.5rem;
   max-width: 50rem;
+  color: #333;
 }
 
 .site-header {
@@ -102,20 +103,27 @@ body {
       width: 95%;
     }
 
-    pre {
-      line-height: 1.2;
-    }
-
-    code {
+    // `...`
+    code.highlighter-rouge {
       padding: 0.2em 0.4em;
       line-height: 1.2;
       background-color: #eee;
       font-size: 90%;
     }
 
-    .highlight {
-      padding: 0.1em 0.8em;
+    // highlight block
+    figure.highlight {
+      margin-left: 1em;
+      margin-right: 1em;
+      padding: 0.5em;
       background-color: #eee;
+      line-height: 1.2;
+      font-size: 95%;
+
+      > pre {
+        margin: 0;
+        padding: 0;
+      }
     }
 
     @import "syntax-highlighting";
