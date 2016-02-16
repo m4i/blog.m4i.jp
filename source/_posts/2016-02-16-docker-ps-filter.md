@@ -4,6 +4,8 @@ tags: Docker
 ---
 前方一致は先頭に `/`、後方一致は末尾に `$` を付ける。
 
+試したら動いただけで、根拠は見つけられなかったし、正しい使い方かもわからない。
+
 {% highlight plaintext %}
 $ docker run -d --name=a-1 busybox sleep 1h
 e573427357b0bb0649557f0ba8822152cab8defed3c7d73f3d95c87faaa5fb59
