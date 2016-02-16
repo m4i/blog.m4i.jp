@@ -3,14 +3,14 @@ provider "aws" {
 }
 
 resource "template_file" "user-policy" {
-    filename = "user-policy.json"
+    template = "user-policy.json"
     vars {
         bucket_name = "${var.bucket_name}"
     }
 }
 
 resource "template_file" "bucket-policy" {
-    filename = "bucket-policy.json"
+    template = "bucket-policy.json"
     vars {
         bucket_name = "${var.bucket_name}"
     }
@@ -45,5 +45,10 @@ resource "aws_s3_bucket" "blog" {
     website {
         index_document = ".index"
         error_document = ".404"
+    }
+
+    logging {
+        target_bucket = "m4i-logs"
+        target_prefix = "s3/${var.bucket_name}/"
     }
 }
