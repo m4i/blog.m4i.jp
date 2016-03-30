@@ -1,7 +1,18 @@
 ---
 title: docker ps --filter で前方/後方一致
 tags: Docker
+modified_at: 2016-03-30
 ---
+## 2016-03-30 追記
+
+「name の先頭に `/` を付加した文字列に対して正規表現でマッチする」
+
+が正解っぽい。
+ソースは多分[この辺り](https://github.com/docker/engine-api/blob/v0.3.1/types/filters/parse.go#L167-L183)。
+
+
+## 本文
+
 前方一致は先頭に `/`、後方一致は末尾に `$` を付ける。
 
 試したら動いただけで、根拠は見つけられなかったし、正しい使い方かもわからない。
