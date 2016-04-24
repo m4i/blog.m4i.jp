@@ -90,5 +90,5 @@ end
 
 
 Dir.chdir(__dir__ + '/..')
-deploy_to_s3(ENV.fetch('S3_BUCKET_NAME'))
+deploy_to_s3(ENV.fetch('S3_BUCKET'))
 invalidate(ENV.fetch('CLOUDFRONT_DISTRIBUTION_ID'))

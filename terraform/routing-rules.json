@@ -1,0 +1,12 @@
+[
+  { "Condition": { "KeyPrefixEquals": "rss"        }, "Redirect": { "ReplaceKeyPrefixWith": "feed"   } },
+  { "Condition": { "KeyPrefixEquals": "entry/2005" }, "Redirect": { "HostName": "m4i.hatenablog.com" } },
+  { "Condition": { "KeyPrefixEquals": "entry/2006" }, "Redirect": { "HostName": "m4i.hatenablog.com" } },
+  { "Condition": { "KeyPrefixEquals": "entry/2007" }, "Redirect": { "HostName": "m4i.hatenablog.com" } },
+  { "Condition": { "KeyPrefixEquals": "entry/2008" }, "Redirect": { "HostName": "m4i.hatenablog.com" } },
+  { "Condition": { "KeyPrefixEquals": "entry/2009" }, "Redirect": { "HostName": "m4i.hatenablog.com" } },
+  { "Condition": { "KeyPrefixEquals": "entry/2010" }, "Redirect": { "HostName": "m4i.hatenablog.com" } },
+  { "Condition": { "KeyPrefixEquals": "entry/2011" }, "Redirect": { "HostName": "m4i.hatenablog.com" } },
+  { "Condition": { "KeyPrefixEquals": "entry/2012" }, "Redirect": { "HostName": "m4i.hatenablog.com" } },
+  { "Condition": { "KeyPrefixEquals": "entry/2013" }, "Redirect": { "HostName": "m4i.hatenablog.com" } }
+]

@@ -7,7 +7,7 @@
         "s3:ListBucket",
         "s3:GetBucketLocation"
       ],
-      "Resource": "arn:aws:s3:::${bucket_name}"
+      "Resource": "arn:aws:s3:::${bucket}"
     },
     {
       "Effect": "Allow",
@@ -15,7 +15,7 @@
         "s3:PutObject",
         "s3:DeleteObject"
       ],
-      "Resource": "arn:aws:s3:::${bucket_name}/*"
+      "Resource": "arn:aws:s3:::${bucket}/*"
     },
     {
       "Effect": "Allow",
