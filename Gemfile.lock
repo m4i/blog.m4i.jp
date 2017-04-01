@@ -3,13 +3,21 @@ GEM
   specs:
     addressable (2.5.1)
       public_suffix (~> 2.0, >= 2.0.2)
-    aws-sdk (2.9.1)
-      aws-sdk-resources (= 2.9.1)
-    aws-sdk-core (2.9.1)
+    aws-partitions (1.5.0)
+    aws-sdk-cloudfront (1.0.0.rc2)
+      aws-sdk-core (= 3.0.0.rc1)
+      aws-sigv4 (~> 1.0)
+    aws-sdk-core (3.0.0.rc1)
+      aws-partitions (~> 1.0)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.9.1)
-      aws-sdk-core (= 2.9.1)
+    aws-sdk-kms (1.0.0.rc3)
+      aws-sdk-core (= 3.0.0.rc1)
+      aws-sigv4 (~> 1.0)
+    aws-sdk-s3 (1.0.0.rc3)
+      aws-sdk-core (= 3.0.0.rc1)
+      aws-sdk-kms (= 1.0.0.rc3)
+      aws-sigv4 (~> 1.0)
     aws-sigv4 (1.0.0)
     colorator (1.1.0)
     concurrent-ruby (1.0.5)
@@ -65,7 +73,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  aws-sdk
+  aws-sdk-cloudfront
+  aws-sdk-s3
   jekyll-assets
 
 BUNDLED WITH

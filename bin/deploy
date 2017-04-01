@@ -10,7 +10,8 @@ OBJECT_KEYS = {
 require 'digest'
 require 'pathname'
 require 'bundler/setup'
-require 'aws-sdk'
+require 'aws-sdk-cloudfront'
+require 'aws-sdk-s3'
 require 'rack'
 
 def get_object_key(path)
