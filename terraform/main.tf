@@ -1,3 +1,11 @@
+terraform {
+  backend "s3" {
+    region = "us-west-2"
+    bucket = "m4i"
+    key    = "tfstates/blog.m4i.jp.tfstate"
+  }
+}
+
 variable "region" {
 }
 
@@ -18,17 +26,20 @@ provider "aws" {
   region = "${var.region}"
 }
 
-resource "template_file" "bucket-policy" {
-  template = "${file("bucket-policy.json.tpl")}"
-
-  vars {
-    bucket = "${var.domain}"
+data "aws_iam_policy_document" "bucket-policy" {
+  statement {
+    principals {
+      type        = "AWS"
+      identifiers = ["*"]
+    }
+    actions   = ["s3:GetObject"],
+    resources = ["arn:aws:s3:::${var.domain}/*"]
   }
 }
 
 resource "aws_s3_bucket" "blog" {
   bucket = "${var.domain}"
-  policy = "${template_file.bucket-policy.rendered}"
+  policy = "${data.aws_iam_policy_document.bucket-policy.json}"
 
   website {
     index_document = ".index"
@@ -93,11 +104,26 @@ resource "aws_cloudfront_distribution" "blog" {
   }
 }
 
-resource "template_file" "user-policy" {
-  template = "${file("user-policy.json.tpl")}"
-
-  vars {
-    bucket = "${aws_s3_bucket.blog.id}"
+data "aws_iam_policy_document" "user-policy" {
+  statement {
+    actions = [
+      "s3:ListBucket",
+      "s3:GetBucketLocation",
+    ]
+    resources = ["arn:aws:s3:::${aws_s3_bucket.blog.id}"]
+  }
+  statement {
+    actions = [
+      "s3:PutObject",
+      "s3:DeleteObject",
+    ]
+    resources = ["arn:aws:s3:::${aws_s3_bucket.blog.id}/*"]
+  }
+  statement {
+    actions = [
+      "cloudfront:CreateInvalidation",
+    ]
+    resources = ["*"]
   }
 }
 
@@ -112,7 +138,7 @@ resource "aws_iam_access_key" "blog" {
 resource "aws_iam_user_policy" "blog" {
   name   = "s3,${aws_s3_bucket.blog.id}"
   user   = "${aws_iam_user.blog.name}"
-  policy = "${template_file.user-policy.rendered}"
+  policy = "${data.aws_iam_policy_document.user-policy.json}"
 }
 
 output "cloudfront_distribution_id" {
